@@ -82,13 +82,15 @@
 					<table class="table" border="0">
 						<tr>
 							<td>ID Number</td>
+							<td>Link</td>
 							<td>Lastname</td>
 							<td>Firstname</td>
 							<td>Middle Initial</td>
 						</tr>
 						<!-- {% for member in members %} -->
-						<tr data-ng-repeat="student in students | filter:searchStudent:false">
+						<tr data-ng-repeat="student in members">
 							<td><a href="/members/{{member.id}}">{{student.student_id}}</a></td>
+							<td>{{ student }}</td>
 							<td>{{student.last_name}}</td>
 							<td>{{student.first_name}}</td>
 							<td>{{student.middle_initial}}</td>
