@@ -1,11 +1,11 @@
-## Organization Payment Portal
+## Organization Management System
 
-#### Organization Management System (Collections, Memberships, Events (Reports), Liquidations, Inventory, Insurance) 
+Integrated Workflow for Collections, Memberships, Events, Liquidations, Inventory, Insurance in any organizations
 
 #### Tools
 
-SQLAlchemy-migrate for migrations
-Flask-RESTful for implementing REST Apis
+- SQLAlchemy-migrate for migrations
+- Flask-RESTful for implementing REST Apis
 
 #### Notes:
 - SQLAlchemy(http://www.sqlalchemy.org/) - Python SQL toolkit and Object Relational Mapper 
