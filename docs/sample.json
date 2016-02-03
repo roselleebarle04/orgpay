@@ -1,0 +1,119 @@
+/************************/
+/*Sample Data			*/
+/************************/
+
+/* Scholarship Data */
+[
+	Paying,
+	SA/OA/TA,
+	ESGP-PA,
+	Dependent1(Sibling/Children),
+	Dean's Award,
+	Honors(A) (1.00-1.50), 
+	Honors(B) (1.50 - 1.75),
+	Valedictorian/Salutatorian,
+	Congressman Belmonte,
+	Iskolar Ng Bayan, 
+	Barangay-Kids,
+	ANTEU-UDep,
+	Congressman Dimaporo,
+	Faculty Dep Reg,
+] 
+
+/* Sample student data */
+{
+	'student_id': 2013-0038,
+	
+	'last_name': 'Ebarle',
+	'first_name': 'Roselle',
+	'middle_initial': 'M',
+
+	'student_level': 3,
+	'student_major': 'BSCS',
+	'program_department': 'CS', 
+	'department_college': 'SCS',
+
+	'gender': 'F',
+	'registration_date': 8/4/15, 
+	'scholarship_description': 'Honors(B)(1.50-1.75)',
+	'student_permanent_address': 'Purok 5A Tambo Bayug Iligan City',
+}
+
+/* Sample Collection Transaction Data */
+{
+	'student_id': 2013-0038,
+	'or_number': 12701,
+	'date': 8/4/15,
+	'school_year': 2015-2016,
+	'term': 1,
+	'organization_fee_id': [1,2]
+	'total': 125,
+}
+
+/* Organization Fees Table */
+{
+	'fee_id': 1,
+	'code': 'INS',
+	'description': 'Insurance',
+	'amount': 85,
+	'school_year': 2015-2016, 
+	'term': 1,
+	'is_required': True,
+	'is_active': True,
+}, {
+	'fee_id': 2,
+	'code': 'MAF',
+	'description': 'Medical Assistance Fund',
+	'amount': 40
+	'school_year': 2015-2016, 
+	'term': 1,
+	'is_required': True,
+	'is_active': True,
+}
+
+/* Refund Data */
+	
+/************************/
+/*FUNCTIONS				*/
+/************************/
+
+/* function: get_member_account */
+I want to get member account to check his liabilities (unpaid assessment fees)
+Option A: 
+- Get member whose student_id matches the query
+- Output the member's details and output table of fees with corresponding amount and status (if paid or unpaid)
+
+/* function: has_member_paid_fee(student, fee_id) */
+- Get collection transaction where student is equal to transaction's student_id and 
+fee_id is in organization_fee_ids. 
+
+/* function: get_members_with_balance */
+I want to get a list of all members with balance so that i could send out a list to 
+offices who need it. 
+Option A: 
+- Get all required organization fees
+- Get all collection transactions where organization_fee_id includes the required organization fees 
+- The list of names who had the transaction are now derived and stored in paid_members
+- Get all members not in paid_members 
+
+/************************/
+/*Business Rules		*/
+/************************/
+1. Collection transactions should be unique - users can't pay the same fee twice in the school year or term. 
+2. Student ID is unique for each student. 
+/************************/
+/*Endpoints				*/
+/************************/
+- Add Member
+- Update Member
+- View Member Details & Transactions
+- Deactivate Member
+
+- Get members with balance
+
+- Add Collection
+- Update Collection
+
+- Add Organization Fee
+- Update Organization Fee
+
