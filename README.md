@@ -1,6 +1,16 @@
 ## Organization Management System
 
-Integrated Workflow for Collections, Memberships, Events, Liquidations, Inventory, Insurance in any organizations
+Integrated workflow for Collections, Memberships, Events, Liquidations, Inventory, Insurance in any organizations.
+
+#### Local Installation
+
+````
+# Use virtualenvwrapper
+mkvirtualenv orgpay
+
+pip install -r requirements.txt
+python run.py
+````
 
 #### Tools
 
