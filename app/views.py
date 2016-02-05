@@ -1,11 +1,22 @@
 from flask import render_template, flash, redirect
 from app import app
 from .forms import LoginForm
+from .models import *
 
 @app.route('/')
 def index():
 	user = {'nickname': 'Miguel'}
 	return render_template('home.html', title='Home', user=user) 
+
+@app.route('/members')
+def members():
+  members = Member.query.all()
+  results_count = len(members)
+  return render_template('members.html', title='Members', members=members, results_count=results_count) 
+
+@app.route('/collections')
+def collections():
+  return render_template('collections.html', title='Collections') 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

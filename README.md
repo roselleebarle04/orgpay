@@ -1,6 +1,6 @@
 ## Organization Management System
 
-Integrated workflow for Collections, Memberships, Events, Liquidations, Inventory, Insurance in any organizations.
+Integrated workflow for Collections/Payments/Cashiering Module, Memberships, Events, Liquidations, Inventory, Insurance in any organizations.
 
 #### Local Installation
 
@@ -17,10 +17,11 @@ python run.py
 - SQLAlchemy-migrate for migrations
 - Flask-RESTful for implementing REST Apis
 
-#### Notes:
+#### Notes
 - SQLAlchemy(http://www.sqlalchemy.org/) - Python SQL toolkit and Object Relational Mapper 
 
-#### References:
+#### References
+- https://github.com/mitsuhiko/flask/wiki/Large-app-how-to
 - https://blog.openshift.com/build-your-app-on-openshift-using-flask-sqlalchemy-and-postgresql-92/
 - http://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
 - http://shop.oreilly.com/product/0636920034803.do
