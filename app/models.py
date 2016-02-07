@@ -50,6 +50,9 @@ class Member(db.Model):
             'collections': url_for('get_member_collections', id=self.id, _external=True)
         }
 
+class ValidationError(ValueError):
+    pass
+
 class CollectionTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     member_id = db.Column(db.Integer, db.ForeignKey('member.id'))
@@ -66,3 +69,11 @@ class CollectionTransaction(db.Model):
             'or_number': self.or_number,
             'transaction_date': self.transaction_date,
         }
+
+    def from_json(self, json):
+        try:
+            self.member_id = json['member_id']
+            self.or_number = json['or_number']
+        except KeyError as e:
+            raise ValidationError('Invalid Or Number: Missing ' + e.args[0])
+        return self

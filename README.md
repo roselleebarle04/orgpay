@@ -20,10 +20,11 @@ $ python
 >> add_test_data()
 >> ctrol+d
 
-#### Tools
+#### Used Packages
 
 - SQLAlchemy-migrate for migrations
 - Flask-RESTful for implementing REST Apis
+- Nosetests - For testing
 
 #### Notes
 - SQLAlchemy(http://www.sqlalchemy.org/) - Python SQL toolkit and Object Relational Mapper 
