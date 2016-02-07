@@ -68,14 +68,10 @@ def add_test_member():
 	db.session.add(member)
 	db.session.commit()
 
-def add_test_collection_category():
-	category = CollectionCategory(name='MAF')
-	db.session.add(category)
-	db.session.commit()
-
 def add_test_collection_transaction():
-	transaction = CollectionTransaction(member_id=Member.query.get(id=1), or_number=123456)
-	# How to add collectionitems in collectiontransaction? 
+	transaction = CollectionTransaction(member_id=Member.query.get_or_404(1), or_number=123456)
+	db.session.add(transaction)
+	db.session.commit
 
 def call_bulk_add():
 	filenames = ['cass.csv', 'cbaa.csv', 'ced.csv', 'coe.csv', 'con.csv', 'csm.csv', 'csm-graduate.csv', 'scs.csv', 'set.csv', 'sgs.csv']
@@ -88,3 +84,4 @@ def add_test_data():
 	destroy_db()
 	initialize_db()
 	add_test_member()
+	add_test_collection_transaction()

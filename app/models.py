@@ -1,6 +1,6 @@
 from app import db
 from datetime import datetime
-
+from flask import url_for
 
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,13 +24,17 @@ class Member(db.Model):
     collectiontransactions = db.relationship('CollectionTransaction', backref='member')
 
     def __repr__(self):
-        return '%s, %s %s' % (self.last_name, self.first_name, self.middle_initial)
+        return '%s' % (self.id)
 
-    def get_url():
-        pass
+    def get_url(self):
+        return url_for('get_member', id=self.id, _external=True)
     
-    def to_json():
-        pass
+    def to_json(self):
+        return {
+            'url': self.get_url(),
+            'name': self.student_id,
+            'transactions': url_for('get_member_collections', id=self.id, _external=True)
+        }
 
 class CollectionTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
