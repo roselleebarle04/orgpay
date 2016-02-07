@@ -10,9 +10,14 @@ def index():
 
 @app.route('/members')
 def members():
-  members = Member.query.all()
-  results_count = len(members)
-  return render_template('members/members.html', title='Members', members=members, results_count=results_count) 
+	members = []
+	results_count = 0
+	try:
+		members = Member.query.all()
+		results_count = len(members)
+	except:
+		pass
+  	return render_template('members/members.html', title='Members', members=members, results_count=results_count) 
 
 @app.route('/collections', methods=['GET', 'POST'])
 def collections():
