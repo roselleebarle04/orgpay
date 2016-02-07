@@ -24,39 +24,13 @@ class Member(db.Model):
     collectiontransactions = db.relationship('CollectionTransaction', backref='member')
 
     def __repr__(self):
-        return '<Member %r>' % (self.student_id)
-
-collectionTransactionItems = db.Table('collectionTransactionItems',
-    db.Column('collectiontransaction_id', db.Integer, db.ForeignKey('collection_transaction.id')),
-    db.Column('collectionitem_id', db.Integer, db.ForeignKey('collection_item.id')),
-)
+        return '%s, %s %s' % (self.last_name, self.first_name, self.middle_initial)
 
 class CollectionTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     member_id = db.Column(db.Integer, db.ForeignKey('member.id'))
-    transaction_date = db.Column(db.DateTime) 
     or_number = db.Column(db.Integer, index=True)
-    collection_items = db.relationship('CollectionItem', 
-        secondary=collectionTransactionItems, 
-        backref=db.backref('collectiontransactions', lazy='dynamic'), 
-        lazy='dynamic')
-
-    def get_total(self, collectiontransaction):
-        return 0 
-
-class CollectionItem(db.Model):
-    """ This model serves as the association table between the many-to-many
-    relationsip between Member and CollectionTransaction"""
-    id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Integer)
-    is_required = db.Column(db.Boolean)
-    collectioncategory_id = db.Column(db.Integer, db.ForeignKey('collection_category.id'))
-
-class CollectionCategory(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True)
-    
-    collectionitems = db.relationship('CollectionItem', backref='collectioncategory')
+    transaction_date = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 

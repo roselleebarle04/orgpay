@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect
 from app import app
-from .forms import LoginForm
+from .forms import *
 from .models import *
 
 @app.route('/')
@@ -12,19 +12,20 @@ def index():
 def members():
   members = Member.query.all()
   results_count = len(members)
-  return render_template('members.html', title='Members', members=members, results_count=results_count) 
+  return render_template('members/members.html', title='Members', members=members, results_count=results_count) 
 
-@app.route('/collections')
+@app.route('/collections', methods=['GET', 'POST'])
 def collections():
-  return render_template('collections.html', title='Collections') 
+	collections = []
+	form = CollectionTransactionForm()
+	form.member_id.choices = [h for h in Member.query.all()]
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for OpenID="%s", remember_me=%s' %
-              (form.openid.data, str(form.remember_me.data)))
-        return redirect('/')
-    return render_template('login.html', 
-                           title='Sign In',
-                           form=form)
+	if form.validate_on_submit():
+		member_id = form.member_id.data
+		or_number = form.or_number.data
+
+  	return render_template('collections/collections.html', form=form, collections=collections, title='Collections') 
+
+@app.errorhandler(404)
+def page_not_found(e):
+  return render_template('404.html'), 404

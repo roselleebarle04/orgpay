@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+<div class="row">
+	<div class="col-md-12">
+		<h4>Quick Links</h4>
+		<ul>
+			<li><a href="/members/add">Add Member</a></li>
+			<li><a href="/members/add">View All Members</a></li>
+			<li><a href="/members/add">View Members with Liabilities</a></li>
+		</ul>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<!-- Left Top Bar Widget -->
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form form-horizontal">
+					<div class="fieldset">
+						<h4>Quick Add Form</h4><br>
+						<div class="form-group">
+							<div class="col-md-4">
+								<label>OR Number</label>
+							</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-4">
+								<label>Member</label>
+							</div>
+							<div class="col-md-8">
+								<select class="form-control">
+									<option value="1">1</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<input type="submit" class="form-control" value="Add Collection">
+							</div>
+						</div>
+					</div>
+				</form>	
+				<form class="form" method="POST">
+					{{ form.member_id.label }}{{ form.member_id(class='form-control') }}
+					{{ form.or_number.label }}{{ form.or_number(class='form-control') }}
+					{{ form.submit(class='form-control') }}
+				</form>	
+			</div>
+		</div>
+	</div>
+	<!-- Right Top Bar Widget-->
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form">
+					<h4>Filter</h4>
+					<div class="form-group">
+						<select name="filter_by" class="form-control">
+							<option value="id_number">ID Number</option>
+							<option value="name">Name</option>
+						</select>
+					</div>	
+					<div class="form-group">
+						<input type="text" name="q" class="form-control" placeholder="Search Member">
+					</div>				
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<p>Showing {{ results_count }} result(s)</p>
+		<table class="table" border="0">
+			<tr>
+				<td>OR Number</td>
+				<td>Member</td>
+			</tr>
+			{% for transaction in collections %}
+			<tr>
+				<td><a href="/members/{{member.id}}">{{ transaction.or_number }}</a></td>
+				<td>{{ transaction.member }}.</td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</div>
+</div>
+{% endblock %}

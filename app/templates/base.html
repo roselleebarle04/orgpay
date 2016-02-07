@@ -11,7 +11,10 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         .content-container {
-          padding: 0 50px;
+          padding: 0 10px;
+        }
+        .sidebar-container {
+          padding: 0 10px;
         }
         body, html {
           overflow-x: hidden;
@@ -29,7 +32,7 @@
   	{% include '_nav.html' %}
   	<div class="row">
   		<div class="col-md-3" style="border-right: 1px solid #3d3d;">
-        <div class="container">
+        <div class="sidebar-container">
           {% block sidebar %}{% endblock %}
         </div>
   		</div>
