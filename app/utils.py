@@ -64,8 +64,10 @@ def destroy_db():
 	db.drop_all()
 
 def add_test_member():
-	member = Member(student_id=20130038)
+	member = Member(student_id='20130038', last_name='Ebarle', first_name='Roselle', middle_initial='M', student_level=3, student_major='BSCS', program_department='CS', department_college='SCS', gender='F', scholarship_description='Paying', student_permanent_address='Iligan City')
+	member2 = Member(student_id='20130039', last_name='Vilar', first_name='Ken', middle_initial='D', student_level=3, student_major='BSCS', program_department='CS', department_college='SCS', gender='F', scholarship_description='Paying', student_permanent_address='Iligan City')
 	db.session.add(member)
+	db.session.add(member2)
 	db.session.commit()
 
 def add_test_collection_transaction():
