@@ -19,6 +19,10 @@ def get_members():
 def get_member(id):
 	pass
 
+@app.route('/api/members/<int:id>/collections/', methods=['GET'])
+def get_member_collections(id):
+	pass
+	
 @app.route('/api/collections', methods=['GET'])
 def get_collections():
 	collections = []

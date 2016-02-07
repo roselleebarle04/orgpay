@@ -15,7 +15,7 @@ OPENID_PROVIDERS = [
 
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'migrations')
 
 # Use a secure, unique and absolutely secret key for
 # signing the data. 

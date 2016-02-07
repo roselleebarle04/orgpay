@@ -26,6 +26,12 @@ class Member(db.Model):
     def __repr__(self):
         return '%s, %s %s' % (self.last_name, self.first_name, self.middle_initial)
 
+    def get_url():
+        pass
+    
+    def to_json():
+        pass
+
 class CollectionTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     member_id = db.Column(db.Integer, db.ForeignKey('member.id'))
