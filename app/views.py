@@ -7,7 +7,7 @@ from .models import *
 
 @app.route('/')
 def index():
-	return render_template('home.html', title='Home') 
+	return render_template('base.html', title='Home') 
 
 @app.route('/api/members', methods=['GET'])
 def get_members():
@@ -69,5 +69,4 @@ def validation_error(e):
 
 @app.errorhandler(404)
 def not_found_error(e):
-	print e
 	return not_found_error(e.args[0])

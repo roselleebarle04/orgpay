@@ -73,7 +73,7 @@ def add_test_member():
 def add_test_collection_transaction():
 	transaction = CollectionTransaction(member_id=1, or_number=123456)
 	db.session.add(transaction)
-	db.session.commit
+	db.session.commit()
 
 def call_bulk_add():
 	filenames = ['cass.csv', 'cbaa.csv', 'ced.csv', 'coe.csv', 'con.csv', 'csm.csv', 'csm-graduate.csv', 'scs.csv', 'set.csv', 'sgs.csv']
