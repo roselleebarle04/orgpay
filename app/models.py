@@ -42,5 +42,13 @@ class CollectionTransaction(db.Model):
     or_number = db.Column(db.Integer, index=True)
     transaction_date = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def get_url(self):
+        return url_for('get_collection', id=self.id, _external=True)
 
-
+    def to_json(self):
+        return {
+            'url': self.get_url(),
+            'member': url_for('get_member', id=self.member_id, _external=True),
+            'or_number': self.or_number,
+            'transaction_date': self.transaction_date,
+        }

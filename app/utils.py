@@ -69,7 +69,7 @@ def add_test_member():
 	db.session.commit()
 
 def add_test_collection_transaction():
-	transaction = CollectionTransaction(member_id=Member.query.get_or_404(1), or_number=123456)
+	transaction = CollectionTransaction(member_id=1, or_number=123456)
 	db.session.add(transaction)
 	db.session.commit
 
