@@ -12,6 +12,11 @@ pip install -r requirements.txt
 python run.py
 ````
 
+#### Add Dummy Data
+$ python
+>> from app.utils import add_test_data
+>> add_test_data()
+
 #### Tools
 
 - SQLAlchemy-migrate for migrations

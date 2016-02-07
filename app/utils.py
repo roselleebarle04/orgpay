@@ -83,3 +83,7 @@ def call_bulk_add():
 		data_dir = 'data/'
 		csv_dir = data_dir + filename
 		bulk_add_members(csv_dir)
+
+def add_test_data():
+	initialize_db()
+	add_test_member()
