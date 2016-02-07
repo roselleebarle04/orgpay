@@ -12,7 +12,8 @@ def index():
 def get_members():
 	members = []
 	members = Member.query.all()
-  	return jsonify({'urls': members})
+	response = [m.id for m in members]
+  	return jsonify({'urls': response})
 
 @app.route('/members/<int:id>', methods=['GET'])
 def get_member(id):

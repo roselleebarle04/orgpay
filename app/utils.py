@@ -85,5 +85,6 @@ def call_bulk_add():
 		bulk_add_members(csv_dir)
 
 def add_test_data():
+	destroy_db()
 	initialize_db()
 	add_test_member()
