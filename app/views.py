@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, request
-from flask import jsonify
+from flask import jsonify, g
 from app import app
 from app import db
 from .forms import *

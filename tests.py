@@ -19,8 +19,8 @@ class AppTestCase(unittest.TestCase):
 
     def test_create_collection(self):
         # Create New
-        rv, json = self.app.post('/api/collections/', data={'member_id': 1, 'or_number': '12345'})
-        self.assertTrue(rv.status_code == 201)
+        response = self.app.post('/api/collections/', data={'member_id': 1, 'or_number': '12345'})
+        self.assertTrue(response.status_code == 201)
 
 if __name__ == '__main__':
     unittest.main()
