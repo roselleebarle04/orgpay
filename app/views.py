@@ -18,9 +18,10 @@ def get_members():
 @app.route('/api/members/<int:id>', methods=['GET'])
 def get_member(id):
 	pass
-		
+
 @app.route('/api/collections', methods=['GET'])
 def get_collections():
 	collections = []
 	response = []
 	return jsonify({'response': response})
+
