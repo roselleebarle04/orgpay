@@ -1,0 +1,104 @@
+<div ng-controller="MembersController">
+
+	<div class="col-md-3" style="border-right: 1px solid #3d3d;">
+	        <div class="sidebar-container">
+				<div class="row">
+					<div class="col-md-12">
+						<h4>Quick Links</h4>
+						<ul>
+							<li><a href="/members/add">Add Member</a></li>
+							<li><a href="/members/add">View All Members</a></li>
+							<li><a href="/members/add">View Members with Liabilities</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+	</div>
+
+	<div class="col-md-9">
+		<div class="content-container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form class="form form-horizontal">
+								<div class="fieldset">
+									<h4>Quick Add Form</h4><br>
+									<div class="form-group">
+										<div class="col-md-4">
+											<label>ID Number</label>
+										</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-4">
+											<label>Last Name</label>
+										</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-4">
+											<label>First Name</label>
+										</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-4">
+											<label>Middle Name</label>
+										</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-12">
+											<input type="submit" class="form-control">
+										</div>
+									</div>
+								</div>
+							</form>		
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<form class="form">
+						<h4>Filter</h4>
+						<div class="form-group">
+							<input type="text" name="q" class="form-control" data-ng-model="searchStudent" placeholder="Search By ID Number, Firstname, Lastname">
+						</div>
+					</form>
+				</div>
+				<div class="col-md-12">
+					<p>Showing <!-- {{ results_count }} --> result(s)</p>
+					<table class="table" border="0">
+						<tr>
+							<td>ID Number</td>
+							<td>Lastname</td>
+							<td>Firstname</td>
+							<td>Middle Initial</td>
+						</tr>
+						<!-- {% for member in members %} -->
+						<tr data-ng-repeat="student in students | filter:searchStudent:false">
+							<td><a href="/members/{{member.id}}">{{student.student_id}}</a></td>
+							<td>{{student.last_name}}</td>
+							<td>{{student.first_name}}</td>
+							<td>{{student.middle_initial}}</td>
+						</tr>
+						<!-- {% endfor %} -->
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
