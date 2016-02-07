@@ -32,8 +32,22 @@ class Member(db.Model):
     def to_json(self):
         return {
             'url': self.get_url(),
-            'name': self.student_id,
-            'transactions': url_for('get_member_collections', id=self.id, _external=True)
+            'student_id': self.student_id,
+            'names': {
+                'last_name': self.last_name,
+                'first_name': self.first_name,
+                'middle_initial': self.middle_initial,
+            }, 
+            'student_level': self.student_level,
+            'student_major': self.student_major,
+            'program_department': self.program_department, 
+            'department_college': self.department_college, 
+            'gender': self.gender, 
+            'registration_date': self.registration_date,
+            'scholarship_description': self.scholarship_description, 
+            'address': self.student_permanent_address,
+
+            'collections': url_for('get_member_collections', id=self.id, _external=True)
         }
 
 class CollectionTransaction(db.Model):

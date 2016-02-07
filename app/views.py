@@ -34,3 +34,4 @@ def get_collection(id):
 def get_member_collections(id):
 	m = Member.query.get_or_404(id)
 	return jsonify({'response': [c.get_url() for c in m.collectiontransactions]})
+
