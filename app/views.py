@@ -1,9 +1,37 @@
 from flask import render_template, flash, redirect, request
-from flask import jsonify, g
-from app import app
+from flask_restful import Resource, Api, reqparse, fields, marshal_with, marshal
+from flask import jsonify
+from app import app, api
 from app import db
 from .forms import *
 from .models import *
+
+parser = reqparse.RequestParser()
+member_fields = {
+	'student_id': fields.Integer, 
+	'first_name': fields.String,
+	'last_name': fields.String,
+	'middle_initial': fields.String,
+	'department_college': fields.String,
+	'scholarship_description': fields.String,
+}
+
+class MemberProfile(Resource):
+	def get(self, id):
+		member = Member.query.get_or_404(id)
+		return member.to_json()
+
+class MemberList(Resource):
+	def get(self):
+		s = Member.query.all()
+		return {'members': [i.to_json() for i in s]} 
+
+	def post(self):
+		args = parser.parse_args()
+		return {'status': 'ok'}
+
+api.add_resource(MemberList, '/api/v1/members')
+api.add_resource(MemberProfile, '/api/v1/members/<int:id>')
 
 @app.route('/')
 def index():
@@ -39,18 +67,16 @@ def new_collection():
 	n.from_json(request.json)
 	db.session.add(n)
 	db.session.commit()
-	response = jsonify({})
+	response = jsonify(n.to_json())
 	response.status_code = 201
-	response.headers['Location'] = n.get_url()
 	return response
 
 @app.route('/api/collections/<int:id>', methods=['PUT'])
 def edit_collection(id):
 	n = CollectionTransaction.query.get_or_404(id)
 	n.from_json(request.json)
-	db.session.add(n)
 	db.sesion.commit()
-	return jsonify({})
+	return jsonify({'collection': n})
 
 @app.route('/api/members/<int:id>/collections/', methods=['GET'])
 def get_member_collections(id):
