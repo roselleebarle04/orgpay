@@ -72,8 +72,8 @@ class CollectionTransaction(db.Model):
 
     def from_json(self, json):
         try:
-            self.member_id = json['member_id']
-            self.or_number = json['or_number']
+            self.member_id = json.get('member_id')
+            self.or_number = json.get('or_number')
         except KeyError as e:
             raise ValidationError('Invalid Or Number: Missing ' + e.args[0])
         return self

@@ -1,11 +1,9 @@
 from flask import Flask, jsonify, make_response, abort, request
-from flask.ext.restful import Api, Resource, reqparse, fields, marshal, marshal_with
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
-api = Api(app)
 
 from app import views, models
 

@@ -1,26 +1,31 @@
-from app import app
-import urllib2
 import unittest
-import nose
-from nose.tools import *
+import json
+import os
+import app
+import tempfile 
+from app import db
+from app.models import *
+
+TEST_DB = 'test.db'
 
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = app.test_client()
-        self.app.testing = True
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        app.app.config['TESTING'] = True
+        app.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, TEST_DB)
+        self.app = app.app.test_client()
+        db.create_all()
 
     def tearDown(self):
-        pass
+        db.drop_all()
 
-    def test_members(self):
-        result = self.app.get('/')
-        self.assertEqual(result.status_code, 200)
+    def test_create_new_collection(self):
+        json_data = json.dumps(dict(member_id=1, or_number=12345))
+        response = self.app.post('/api/collections/', content_type='application/json', data=json_data)
+        self.assertEqual(response.status_code, 201)
 
-    def test_create_collection(self):
-        # Create New
-        rv, json = self.app.post('/api/collections/', data={'member_id': 1, 'or_number': '12345'})
-        self.assertTrue(rv.status_code == 201)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,18 +13,21 @@ python run.py
 ````
 
 #### Add Dummy Data
+````
 $ python db_create.py
 $ python db_migrate.py
 $ python
 >> from app.utils import add_test_data
 >> add_test_data()
 >> ctrol+d
+````
 
 #### Used Packages
 
 - SQLAlchemy-migrate for migrations
 - Flask-RESTful for implementing REST Apis
-- Nosetests - For testing
+- Nose - For testing
+- Flask-HTTPAuth
 
 #### Notes
 - SQLAlchemy(http://www.sqlalchemy.org/) - Python SQL toolkit and Object Relational Mapper 

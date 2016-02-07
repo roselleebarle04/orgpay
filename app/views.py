@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, request
-from flask import jsonify
+from flask import jsonify, g
 from app import app
 from app import db
 from .forms import *
@@ -71,5 +71,4 @@ def validation_error(e):
 
 @app.errorhandler(404)
 def not_found_error(e):
-	print e
 	return not_found_error(e.args[0])
