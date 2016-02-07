@@ -64,3 +64,4 @@ target/
 # Custom Add-ons
 *.db
 db_repository/
+data/
