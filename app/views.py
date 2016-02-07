@@ -12,7 +12,9 @@ def index():
 @app.route('/api/members', methods=['GET'])
 def get_members():
 	members = Member.query.all()
-	response = [m.get_url() for m in members]
+	response = []
+	for member in members:
+		response.append(member.to_json())
   	return jsonify({'response': response})
 
 @app.route('/api/members/<int:id>', methods=['GET'])

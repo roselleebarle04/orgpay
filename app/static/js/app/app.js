@@ -1,4 +1,4 @@
-var appModule = angular.module('appModule',['ngRoute']);
+var appModule = angular.module('appModule',['ngRoute', 'ngResource']);
 
 appModule.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
@@ -15,6 +15,13 @@ appModule.config(['$routeProvider', function($routeProvider) {
 			redirectTo: '/'
 		});
 }]);
+
+appModule.factory('Member', ['$resource', function($resource){
+	return $resource('/api/members/:id', {}, {
+		'query': { method: 'GET', isArray: false }
+	});
+}])
+
 
 appModule.controller("MainController", ['$scope','$http','$rootScope', function($scope,$http,$rootScope) {
 	console.log("This is Organization Management Portal site.");

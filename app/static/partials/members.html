@@ -87,15 +87,12 @@
 							<td>Firstname</td>
 							<td>Middle Initial</td>
 						</tr>
-						<!-- {% for member in members %} -->
 						<tr data-ng-repeat="student in members">
-							<td><a href="/members/{{member.id}}">{{student.student_id}}</a></td>
-							<td>{{ student }}</td>
+							<td><a href="/members/{{member.id}}">{{student}}</a></td>
 							<td>{{student.last_name}}</td>
 							<td>{{student.first_name}}</td>
 							<td>{{student.middle_initial}}</td>
 						</tr>
-						<!-- {% endfor %} -->
 					</table>
 					
 				</div>
