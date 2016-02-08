@@ -1,7 +1,6 @@
 appModule.controller('MembersController', ['$scope','$http','$routeParams','Member', function($scope, $http, $routeParams, Member) {
 	var members = Member.query(function(){
 		$scope.members = members.response;
-		console.log(members.response);
 	});
 
 	var member_info = Member.get({id:$routeParams.id}, function(){
