@@ -1,6 +1,13 @@
-appModule.controller('MembersController', ['$scope','$http', 'Member', function($scope, $http, Member) {
-	$scope.members = Member.query();
-	console.log($scope.members);
+appModule.controller('MembersController', ['$scope','$http','$routeParams','Member', function($scope, $http, $routeParams, Member) {
+	var members = Member.query(function(){
+		$scope.members = members.response;
+		console.log(members.response);
+	});
+
+	var member_info = Member.get({id:$routeParams.id}, function(){
+		$scope.member_info = member_info;
+		console.log(member_info);
+	});
 
 	// $http.get('/api/members').then(function(response) {
 	// 	console.log(response.data['response']);

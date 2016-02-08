@@ -86,11 +86,11 @@
 							<td>Firstname</td>
 							<td>Middle Initial</td>
 						</tr>
-						<tr data-ng-repeat="student in members | filter:searchStudent">
-							<td><a href="#members/{{student.id}}">{{student.student_id}}</a></td>
-							<td>{{student.names.last_name}}</td>
-							<td>{{student.names.first_name}}</td>
-							<td>{{student.names.middle_initial}}</td>
+						<tr>
+							<td><a href="#members/{{info.id}}">{{member_info.address}}</a></td>
+							<td>{{member_info.names.last_name}}</td>
+							<td>{{member_info.names.first_name}}</td>
+							<td>{{member_info.names.middle_initial}}</td>
 						</tr>
 					</table>
 					

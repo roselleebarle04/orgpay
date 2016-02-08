@@ -11,6 +11,9 @@ appModule.config(['$routeProvider', function($routeProvider) {
 		when('/members', {
 			templateUrl: 'static/partials/members.html'
 		}).
+		when('/members/:id', {
+			templateUrl: 'static/partials/member_info.html'
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
@@ -18,7 +21,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
 
 appModule.factory('Member', ['$resource', function($resource){
 	return $resource('/api/members/:id', {}, {
-		'query': { method: 'GET', isArray: false }
+		query: { method: 'GET', isArray: false }
 	});
 }])
 

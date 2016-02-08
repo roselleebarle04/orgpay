@@ -25,7 +25,9 @@ def get_member(id):
 @app.route('/api/collections', methods=['GET'])
 def get_collections():
 	collections = CollectionTransaction.query.all()
-	response = [c.get_url() for c in collections]
+	response = []
+	for collection in collections:
+		response.append(collection.to_json())
 	return jsonify({'response': response})
 
 @app.route('/api/collections/<int:id>', methods=['GET'])
@@ -55,7 +57,7 @@ def edit_collection(id):
 @app.route('/api/members/<int:id>/collections/', methods=['GET'])
 def get_member_collections(id):
 	m = Member.query.get_or_404(id)
-	return jsonify({'response': [c.get_url() for c in m.collectiontransactions]})
+	return jsonify({'response': [c.to_json() for c in m.collectiontransactions]})
 
 def bad_request(message):
 	response = jsonify({'error': 'bad request', 'message': message})

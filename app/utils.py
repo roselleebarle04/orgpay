@@ -72,7 +72,9 @@ def add_test_member():
 
 def add_test_collection_transaction():
 	transaction = CollectionTransaction(member_id=1, or_number=123456)
+	transaction2 = CollectionTransaction(member_id=1, or_number=78901)
 	db.session.add(transaction)
+	db.session.add(transaction2)
 	db.session.commit()
 
 def call_bulk_add():

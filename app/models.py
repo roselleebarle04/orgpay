@@ -31,6 +31,7 @@ class Member(db.Model):
     
     def to_json(self):
         return {
+            'id': self.id,
             'url': self.get_url(),
             'student_id': self.student_id,
             'names': {
@@ -47,7 +48,7 @@ class Member(db.Model):
             'scholarship_description': self.scholarship_description, 
             'address': self.student_permanent_address,
 
-            'collections': url_for('get_member_collections', id=self.id, _external=True)
+            'collections': [m.to_json() for m in self.collectiontransactions]
         }
 
 class ValidationError(ValueError):
