@@ -5,14 +5,23 @@ appModule.config(['$routeProvider', function($routeProvider) {
 		when('/', {
 			templateUrl: 'static/partials/home.html'
 		}).
+		when('/collections/add', {
+			templateUrl: 'static/partials/add_collection.html'
+		}).
+		when('/collections/:id', {
+			templateUrl: 'static/partials/collection_info.html'
+		}).
 		when('/collections', {
 			templateUrl: 'static/partials/collections.html'
 		}).
-		when('/members', {
-			templateUrl: 'static/partials/members.html'
+		when('/members/add', {
+			templateUrl: 'static/partials/add_member.html'
 		}).
 		when('/members/:id', {
 			templateUrl: 'static/partials/member_info.html'
+		}).
+		when('/members', {
+			templateUrl: 'static/partials/members.html'
 		}).
 		otherwise({
 			redirectTo: '/'

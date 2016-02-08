@@ -3,35 +3,8 @@ from flask_restful import Resource, Api, reqparse, fields, marshal_with, marshal
 from flask import jsonify
 from app import app, api
 from app import db
-from .forms import *
 from .models import *
 
-parser = reqparse.RequestParser()
-member_fields = {
-	'student_id': fields.Integer, 
-	'first_name': fields.String,
-	'last_name': fields.String,
-	'middle_initial': fields.String,
-	'department_college': fields.String,
-	'scholarship_description': fields.String,
-}
-
-class MemberProfile(Resource):
-	def get(self, id):
-		member = Member.query.get_or_404(id)
-		return member.to_json()
-
-class MemberList(Resource):
-	def get(self):
-		s = Member.query.all()
-		return {'members': [i.to_json() for i in s]} 
-
-	def post(self):
-		args = parser.parse_args()
-		return {'status': 'ok'}
-
-api.add_resource(MemberList, '/api/v1/members')
-api.add_resource(MemberProfile, '/api/v1/members/<int:id>')
 
 @app.route('/')
 def index():
@@ -39,6 +12,18 @@ def index():
 
 @app.route('/api/members', methods=['GET'])
 def get_members():
+	""" Returns a json response containing a 'response' key that contains the array of 
+	members formatted in a dictionary. 
+	
+	Returns 
+	{
+		'response': [
+			{'name': 'member1', 'address': 'address2'},
+			{'name': 'member1', 'address': 'address2'},
+			....
+		]
+	}
+	"""
 	members = Member.query.all()
 	response = []
 	for member in members:
@@ -47,9 +32,36 @@ def get_members():
 
 @app.route('/api/members/<int:id>', methods=['GET'])
 def get_member(id):
-	m = Member.query.get_or_404(id)
-	return jsonify(m.to_json())
+	""" Returns a json response containing a 'response' key that contains an array containing the 
+	member queries (in dict format) 
 	
+	Returns
+	{
+		'response': [
+			{'name': 'member1', 'address': 'address1'}
+		]
+	}
+	"""
+	m = Member.query.get_or_404(id)
+	return jsonify({'response': [m.to_json()]})
+
+@app.route('/api/members/', methods=['POST'])
+def new_member():
+	m = Member()
+	m.from_json(request.json)
+	db.session.add(m)
+	db.session.commit()
+	response = jsonify({'response': [m.to_json()]})
+	response.status_code = 201
+	return response
+
+@app.route('/api/members/<int:id>', methods=['PUT'])
+def edit_member(id):
+	n = Member.query.get_or_404(id)
+	n.from_json(request.json)
+	db.sesion.commit()
+	return jsonify({'response': [n.to_json()]})
+
 @app.route('/api/collections', methods=['GET'])
 def get_collections():
 	collections = CollectionTransaction.query.all()
@@ -61,7 +73,7 @@ def get_collections():
 @app.route('/api/collections/<int:id>', methods=['GET'])
 def get_collection(id):
 	c = CollectionTransaction.query.get_or_404(id)
-	return jsonify(c.to_json())
+	return jsonify({'response': [c.to_json()]})
 
 @app.route('/api/collections/', methods=['POST'])
 def new_collection():
@@ -78,7 +90,7 @@ def edit_collection(id):
 	n = CollectionTransaction.query.get_or_404(id)
 	n.from_json(request.json)
 	db.sesion.commit()
-	return jsonify({'collection': n})
+	return jsonify({'collection': [n.to_json()]})
 
 @app.route('/api/members/<int:id>/collections/', methods=['GET'])
 def get_member_collections(id):

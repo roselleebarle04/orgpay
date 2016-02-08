@@ -1,75 +1,7 @@
 <div ng-controller="MembersController">
-
-	<div class="col-md-3" style="border-right: 1px solid #3d3d;">
-	        <div class="sidebar-container">
-				<div class="row">
-					<div class="col-md-12">
-						<h4>Quick Links</h4>
-						<ul>
-							<li><a href="/members/add">Add Member</a></li>
-							<li><a href="/members/add">View All Members</a></li>
-							<li><a href="/members/add">View Members with Liabilities</a></li>
-						</ul>
-					</div>
-				</div>
-		</div>
-	</div>
-
-	<div class="col-md-9">
 		<div class="content-container">
 			<div class="row">
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<form class="form form-horizontal" ng-submit="">
-								<div class="fieldset">
-									<h4>Quick Add Form</h4><br>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label>ID Number</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label>Last Name</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label>First Name</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label>Middle Name</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<input type="submit" class="form-control">
-										</div>
-									</div>
-								</div>
-							</form>		
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-6 col-md-offset-3">
 					<form class="form">
 						<h4>Filter</h4>
 						<div class="form-group">
@@ -77,26 +9,35 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-md-12">
-					<p>Showing <!-- {{ results_count }} --> result(s)</p>
-					<table class="table" border="0">
+				<div class="member-info col-md-6 col-md-offset-3">
+					<h4>Member Info</h4>
+					<table class="table table-bordered table-striped">
 						<tr>
-							<td>ID Number</td>
-							<td>Lastname</td>
-							<td>Firstname</td>
-							<td>Middle Initial</td>
+							<td><strong>Student ID No.</strong></td>
+							<td>{{member.student_id}}2013-0038</td>
 						</tr>
 						<tr>
-							<td><a href="#members/{{info.id}}">{{member_info.address}}</a></td>
-							<td>{{member_info.names.last_name}}</td>
-							<td>{{member_info.names.first_name}}</td>
-							<td>{{member_info.names.middle_initial}}</td>
+							<td><strong>Full Name</strong></td>
+							<td>{{member.full_name}}Ebarle, Roselle M.</td>
+						</tr>
+						<tr>
+							<td><strong>Gender</strong></td>
+							<td>{{member.gender}}F</td>
+						</tr>
+						<tr>
+							<td><strong>Course & Year</strong></td>
+							<td>{{member.student_major}} {{member.student_level}}BSCS 3</td>
+						</tr>
+						<tr>
+							<td><strong>College</strong></td>
+							<td>{{member.department_college}}SCS</td>
+						</tr>
+						<tr>
+							<td><strong>Collections</strong></td>
+							<td><a href="#collections/{{member.collections.id}}1">{{member.collections.or_number}}OR#12345</a></td>
 						</tr>
 					</table>
-					
 				</div>
 			</div>
 		</div>
-	</div>
-
 </div>

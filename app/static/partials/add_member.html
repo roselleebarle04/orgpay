@@ -1,0 +1,32 @@
+<div ng-controller="MembersController">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<form class="form" ng-submit="processForm">
+				<h4>Add New Member</h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="form-group">
+							<label>ID Number</label>
+							<input type="text" name="student_id" class="form-control" ng-model="addMemberForm.student_id">
+						</div>
+						<div class="form-group">
+							<label>Last Name</label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>First Name</label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Middle Name</label>
+							<input type="text" class="form-control">
+						</div>
+						<button type="submit" class="btn btn-success btn-lg btn-block">
+						    <span class="glyphicon glyphicon-flash"></span> Submit!
+						</button>
+					</div>
+				</div>
+			</form>		
+		</div>
+	</div>
+</div>

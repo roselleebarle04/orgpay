@@ -43,3 +43,45 @@ $ python
 #### Resources
 - http://www.fullstackpython.com/flask.html
 - https://exploreflask.com/index.html
+
+## Ultimate Guide
+
+Project Orgpay - Using Flask/Flask-SQLAlchemy/Flask-RESTful/AngularJS
+
+Integrated workflow for Collections/Payments/Cashiering Module, Memberships, Events, Liquidations, Inventory, Insurance in any organizations.
+
+A comprehensive guide in creating a restful application using Flask, Flask-RESTful, AngularJS, and Flask-SQLAlchemy
+
+#### Outline
+- Preliminary Discussions
+- Setup Virtualenvironment
+- Initialize Application
+
+#### Set up virtualenvironment
+````
+pip install virtualenv
+pip install virtualenvwrapper
+sudo nano ~/.bashrc: 
+
+# Add the following lines in the end of your file
+>> source '/usr/local/bin/virtualenvwrapper.sh'
+
+# Reactivate bash file
+sudo ~/.bashrc
+
+# Create virtualenv
+mkvirtualenv orgpay
+````
+
+#### Initialize Flask Application
+
+App Folder Structure / Overview
+````
+/orgpay
+..../orgpay
+......../static
+......../templates
+........__init__.py
+....run.py
+....db.py
+````

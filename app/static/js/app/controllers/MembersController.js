@@ -9,25 +9,24 @@ appModule.controller('MembersController', ['$scope','$http','$routeParams','Memb
 		console.log(member_info);
 	});
 
-	// $http.get('/api/members').then(function(response) {
-	// 	console.log(response.data['response']);
-	// 	$scope.members = []
-	// 	for (r in response.data['response']){
-	// 		member = response.data['response'][r];
-	// 		console.log(member);
-	// 		$scope.members.push(member);
-	// 	}
-	// 	console.log($scope.members);
-        // for (var i = response.data.results.length - 1; i >= 0; i--) {
-        //     productsData.push(response.data.results[i]);
-        // };
-        // if (pageNumber < response.data.pages) {
-        //     pageNumber++;
-        //     _getPageProducts(pageNumber);
-        // } else {
-        //     deferred.resolve(productsData)  ;  
-        // }
-    // });
-
-	console.log('This is Members Page.');
+	$scope.addMemberForm = {};
+	$scope.processForm = function(){
+		$http({
+			method: 'POST',
+			url: '/api/members/',
+			data: $.param($scope.addMemberForm),
+			headers: { 'Content-Type': 'application/json' }
+		})
+		.success(function(data){
+			console.log(data);
+			if (!data.success) {
+				// if not successful, bind errors to error variables
+				$scope.errorName = data.errors.name;
+				$scope.errorSuperhero = data.errors.superheroAlias;
+			} else {
+				// if successful, bind success message to message
+				$scope.message = data.message;
+			}
+		})
+	};
 }]);
